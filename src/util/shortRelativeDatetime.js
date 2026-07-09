@@ -3,24 +3,23 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { translate as t } from '@nextcloud/l10n'
 import moment from '@nextcloud/moment'
 import curry from 'lodash/fp/curry.js'
-import { translate as t } from '@nextcloud/l10n'
 
-export const shortDatetime = curry((ref, date, withLabel = false) => {
+const startOfDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate())
+
+function startOfPreviousDay(date) {
+	const start = startOfDay(date)
+	start.setDate(start.getDate() - 1)
+	return start
+}
+
+export const shortDatetime = curry((ref, date) => {
 	const momentDate = moment(date)
-	const startOfToday = new Date(ref.getFullYear(), ref.getMonth(), ref.getDate())
-	const startOfYesterday = new Date(startOfToday)
-	startOfYesterday.setDate(startOfYesterday.getDate() - 1)
-	// Within the same day?
-	if (date >= startOfToday) {
+	// Today or yesterday?
+	if (date >= startOfPreviousDay(ref)) {
 		return momentDate.format('H:mm')
-	}
-	// Yesterday?
-	if (date >= startOfYesterday) {
-		return withLabel
-			? t('mail', 'Yesterday') + ' ' + momentDate.format('H:mm')
-			: momentDate.format('H:mm')
 	}
 	// Within the previous week?
 	if (date.getTime() > (ref.getTime() - 30 * 60 * 24 * 7 * 1000)) {
@@ -34,9 +33,17 @@ export const shortDatetime = curry((ref, date, withLabel = false) => {
 	return momentDate.format('MMM D, YYYY')
 })
 
+export const longDatetime = curry((ref, date) => {
+	// Yesterday?
+	if (date < startOfDay(ref) && date >= startOfPreviousDay(ref)) {
+		return t('mail', 'Yesterday') + ' ' + moment(date).format('H:mm')
+	}
+	return shortDatetime(ref, date)
+})
+
 export function messageDateTime(date) {
 	return moment(date * 1000).format('lll')
 }
 
-export const shortRelativeDatetime = (date) => shortDatetime(new Date(), date, false)
-export const longRelativeDatetime = (date) => shortDatetime(new Date(), date, true)
+export const shortRelativeDatetime = (date) => shortDatetime(new Date(), date)
+export const longRelativeDatetime = (date) => longDatetime(new Date(), date)
