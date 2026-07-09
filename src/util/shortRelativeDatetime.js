@@ -19,7 +19,7 @@ export const shortDatetime = curry((ref, date) => {
 	const momentDate = moment(date)
 	// Today or yesterday?
 	if (date >= startOfPreviousDay(ref)) {
-		return momentDate.format('H:mm')
+		return momentDate.format('LT')
 	}
 	// Within the previous week?
 	if (date.getTime() > (ref.getTime() - 30 * 60 * 24 * 7 * 1000)) {
@@ -36,7 +36,7 @@ export const shortDatetime = curry((ref, date) => {
 export const longDatetime = curry((ref, date) => {
 	// Yesterday?
 	if (date < startOfDay(ref) && date >= startOfPreviousDay(ref)) {
-		return t('mail', 'Yesterday') + ' ' + moment(date).format('H:mm')
+		return t('mail', 'Yesterday') + ' ' + moment(date).format('LT')
 	}
 	return shortDatetime(ref, date)
 })

@@ -17,7 +17,7 @@ describe('shortRelativeDatetime', () => {
 
 			const formatted = shortDatetime(ref, d)
 
-			expect(formatted).toBe('9:27')
+			expect(formatted).toBe('9:27 AM')
 		})
 
 		it('shortens yesterdays time', () => {
@@ -30,7 +30,7 @@ describe('shortRelativeDatetime', () => {
 
 			const formatted = shortDatetime(ref, d)
 
-			expect(formatted).toBe('9:27')
+			expect(formatted).toBe('9:27 AM')
 		})
 
 		it('shortens yesterdays time with label', () => {
@@ -43,7 +43,7 @@ describe('shortRelativeDatetime', () => {
 
 			const formatted = longDatetime(ref, d)
 
-			expect(formatted).toBe('Yesterday 9:27')
+			expect(formatted).toBe('Yesterday 9:27 AM')
 		})
 
 		it('shortens todays time without label', () => {
@@ -56,7 +56,7 @@ describe('shortRelativeDatetime', () => {
 
 			const formatted = longDatetime(ref, d)
 
-			expect(formatted).toBe('9:27')
+			expect(formatted).toBe('9:27 AM')
 		})
 
 		it('shortens this weeks day', () => {
