@@ -574,7 +574,7 @@ import { buildRecipients as buildReplyRecipients } from '../ReplyBuilder.js'
 import { FOLLOW_UP_TAG_LABEL } from '../store/constants.js'
 import useMainStore from '../store/mainStore.js'
 import { mailboxHasRights } from '../util/acl.js'
-import { messageDateTime, shortRelativeDatetime } from '../util/shortRelativeDatetime.js'
+import { longRelativeDatetime, messageDateTime, shortRelativeDatetime } from '../util/shortRelativeDatetime.js'
 import { translateTagDisplayName } from '../util/tag.js'
 import { hiddenTags } from './tags.js'
 
@@ -667,6 +667,11 @@ export default {
 		},
 
 		hasMultipleAccounts: {
+			type: Boolean,
+			default: false,
+		},
+
+		dateGrouped: {
 			type: Boolean,
 			default: false,
 		},
@@ -1002,7 +1007,8 @@ export default {
 		},
 
 		formatted() {
-			return shortRelativeDatetime(new Date(this.data.dateInt * 1000))
+			const date = new Date(this.data.dateInt * 1000)
+			return this.dateGrouped ? shortRelativeDatetime(date) : longRelativeDatetime(date)
 		},
 
 		countPossibleAttachements() {
