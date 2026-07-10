@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { longDatetime, shortDatetime } from '../../../util/shortRelativeDatetime.js'
+import { detailedDatetime, longDatetime, shortDatetime } from '../../../util/shortRelativeDatetime.js'
 
 describe('shortRelativeDatetime', () => {
 	describe('toPlain', () => {
@@ -57,6 +57,33 @@ describe('shortRelativeDatetime', () => {
 			const formatted = longDatetime(ref, d)
 
 			expect(formatted).toBe('9:27 AM')
+		})
+
+		it('details yesterdays time with label', () => {
+			const ref = new Date()
+			ref.setFullYear(2020, 1, 13)
+			ref.setHours(13, 14)
+			const d = new Date()
+			d.setFullYear(2020, 1, 12)
+			d.setHours(9, 27)
+
+			const formatted = detailedDatetime(ref, d)
+
+			expect(formatted).toBe('Yesterday 9:27 AM')
+		})
+
+		it('details older dates with date and time', () => {
+			const ref = new Date()
+			ref.setFullYear(2020, 1, 13)
+			ref.setHours(13, 14)
+			const d = new Date()
+			d.setFullYear(2020, 1, 11)
+			d.setHours(9, 27)
+			d.setSeconds(0, 0)
+
+			const formatted = detailedDatetime(ref, d)
+
+			expect(formatted).toBe('Feb 11, 2020 9:27 AM')
 		})
 
 		it('shortens this weeks day', () => {

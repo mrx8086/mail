@@ -41,9 +41,18 @@ export const longDatetime = curry((ref, date) => {
 	return shortDatetime(ref, date)
 })
 
+export const detailedDatetime = curry((ref, date) => {
+	// Older than yesterday?
+	if (date < startOfPreviousDay(ref)) {
+		return moment(date).format('lll')
+	}
+	return longDatetime(ref, date)
+})
+
 export function messageDateTime(date) {
 	return moment(date * 1000).format('lll')
 }
 
 export const shortRelativeDatetime = (date) => shortDatetime(new Date(), date)
 export const longRelativeDatetime = (date) => longDatetime(new Date(), date)
+export const detailedRelativeDatetime = (date) => detailedDatetime(new Date(), date)
