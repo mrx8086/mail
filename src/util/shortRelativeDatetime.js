@@ -36,7 +36,7 @@ export const shortDatetime = curry((ref, date) => {
 export const longDatetime = curry((ref, date) => {
 	// Yesterday?
 	if (date < startOfDay(ref) && date >= startOfPreviousDay(ref)) {
-		return t('mail', 'Yesterday') + ' ' + moment(date).format('LT')
+		return t('mail', 'Yesterday {time}', { time: moment(date).format('LT') })
 	}
 	return shortDatetime(ref, date)
 })
