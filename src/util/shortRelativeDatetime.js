@@ -44,7 +44,7 @@ export const longDatetime = curry((ref, date) => {
 export const detailedDatetime = curry((ref, date) => {
 	// Older than yesterday?
 	if (date < startOfPreviousDay(ref)) {
-		return moment(date).format('lll')
+		return moment(date).format('LLL')
 	}
 	return longDatetime(ref, date)
 })

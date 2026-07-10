@@ -83,7 +83,7 @@ describe('shortRelativeDatetime', () => {
 
 			const formatted = detailedDatetime(ref, d)
 
-			expect(formatted).toBe('Feb 11, 2020 9:27 AM')
+			expect(formatted).toBe('February 11, 2020 9:27 AM')
 		})
 
 		it('shortens this weeks day', () => {
