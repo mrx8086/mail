@@ -47,7 +47,7 @@ final class CreateJmapAccount extends Command {
 		$this->addArgument(self::ARGUMENT_EMAIL, InputArgument::REQUIRED, 'email address');
 		$this->addArgument(self::ARGUMENT_HOST, InputArgument::REQUIRED, 'JMAP server hostname (e.g. mail.example.com)');
 		$this->addArgument(self::ARGUMENT_PORT, InputArgument::REQUIRED, 'JMAP server port (e.g. 443)');
-		$this->addArgument(self::ARGUMENT_SSL_MODE, InputArgument::REQUIRED, 'SSL mode (ssl or none)');
+		$this->addArgument(self::ARGUMENT_SSL_MODE, InputArgument::REQUIRED, 'SSL mode (yes/no)');
 		$this->addArgument(self::ARGUMENT_BAUTH_USER, InputArgument::REQUIRED, 'Basic authentication user');
 		$this->addArgument(self::ARGUMENT_BAUTH_PASSWORD, InputArgument::REQUIRED, 'Basic authentication password');
 		$this->addArgument(self::ARGUMENT_PATH, InputArgument::OPTIONAL, 'JMAP session endpoint path (e.g. /jmap/session)');
