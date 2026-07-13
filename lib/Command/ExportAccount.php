@@ -138,7 +138,6 @@ final class ExportAccount extends Command {
 				$output->writeln('- JMAP user: ' . $mailAccount->getInboundUser());
 				$output->writeln('- JMAP endpoint: ' . $mailAccount->getInboundHost() . ":$port$path, security: " . $mailAccount->getInboundSslMode());
 				return;
-
 			case MailAccount::PROTOCOL_IMAP:
 				$output->writeln('- Protocol: IMAP');
 				$output->writeln('- IMAP user: ' . $mailAccount->getInboundUser());
@@ -148,7 +147,6 @@ final class ExportAccount extends Command {
 				$outboundPort = $mailAccount->getOutboundPort();
 				$output->writeln('- SMTP host: ' . $mailAccount->getOutboundHost() . ":$outboundPort, security: " . $mailAccount->getOutboundSslMode());
 				return;
-
 			default:
 				$output->writeln('- Protocol: ' . $protocol . ' (unsupported export format)');
 		}

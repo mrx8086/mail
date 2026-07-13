@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b7206fc1061851cf7de747579bbf413",
-    "content-hash": "bb8715c61ba4306c0ae68d370df75bfa",
+    "content-hash": "e8c6b7d4f4a52f473d50141c85ed0e6c",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2156,12 +2155,12 @@
             "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nextcloud/horde-managesieve.git",
+                "url": "https://github.com/nextcloud-libraries/horde-managesieve.git",
                 "reference": "722bbe9de54022e7102161ab1f34d8bb8b8ae9c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextcloud/horde-managesieve/zipball/722bbe9de54022e7102161ab1f34d8bb8b8ae9c7",
+                "url": "https://api.github.com/repos/nextcloud-libraries/horde-managesieve/zipball/722bbe9de54022e7102161ab1f34d8bb8b8ae9c7",
                 "reference": "722bbe9de54022e7102161ab1f34d8bb8b8ae9c7",
                 "shasum": ""
             },
