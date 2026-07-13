@@ -23,7 +23,7 @@ use OCP\Migration\SimpleMigrationStep;
 #[AddColumn(table: 'mail_mailboxes', name: 'remote_parent_id', type: ColumnType::STRING)]
 #[AddColumn(table: 'mail_mailboxes', name: 'remote_id', type: ColumnType::STRING)]
 #[AddColumn(table: 'mail_mailboxes', name: 'state', type: ColumnType::STRING)]
-class Version5800Date20260401000002 extends SimpleMigrationStep {
+class Version5011Date20260401000002 extends SimpleMigrationStep {
 
 	/**
 	 * @param IOutput $output

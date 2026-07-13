@@ -20,8 +20,9 @@ use OCP\Migration\SimpleMigrationStep;
 /**
  * @psalm-api
  */
-#[AddColumn(table: 'mail_messages', name: 'remote_id', type: ColumnType::STRING)]
-class Version5800Date20260401000003 extends SimpleMigrationStep {
+#[AddColumn(table: 'mail_accounts', name: 'protocol', type: ColumnType::STRING)]
+#[AddColumn(table: 'mail_accounts', name: 'path', type: ColumnType::STRING)]
+class Version5011Date20260401000001 extends SimpleMigrationStep {
 
 	/**
 	 * @param IOutput $output
@@ -32,16 +33,21 @@ class Version5800Date20260401000003 extends SimpleMigrationStep {
 	#[\Override]
 	public function changeSchema(IOutput $output, Closure $schemaClosure, array $options): ?ISchemaWrapper {
 		$schema = $schemaClosure();
-		$messagesTable = $schema->getTable('mail_messages');
-
-		if (!$messagesTable->hasColumn('remote_id')) {
-			$messagesTable->addColumn('remote_id', Types::STRING, [
-				'length' => 255,
+		$accountsTable = $schema->getTable('mail_accounts');
+		if (!$accountsTable->hasColumn('protocol')) {
+			$accountsTable->addColumn('protocol', Types::STRING, [
+				'length' => 16,
+				'default' => 'imap',
+				'notnull' => true,
+			]);
+		}
+		if (!$accountsTable->hasColumn('path')) {
+			$accountsTable->addColumn('path', Types::STRING, [
+				'length' => 512,
 				'notnull' => false,
 				'default' => null,
 			]);
 		}
-
 		return $schema;
 	}
 }
