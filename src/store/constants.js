@@ -7,6 +7,7 @@ import { TOAST_UNDO_TIMEOUT } from '@nextcloud/dialogs'
 
 export const UNIFIED_ACCOUNT_ID = 0
 export const UNIFIED_INBOX_ID = 'unified'
+export const UNIFIED_SENT_ID = 'unified-sent'
 export const PRIORITY_INBOX_ID = 'priority'
 export const FOLLOW_UP_MAILBOX_ID = 'follow-up'
 export const PAGE_SIZE = 20

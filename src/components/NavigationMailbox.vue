@@ -209,7 +209,7 @@ import { translate as translateMailboxName } from '../i18n/MailboxTranslator.js'
 import logger from '../logger.js'
 import { getMailboxStatus, repairMailbox } from '../service/MailboxService.js'
 import { clearCache } from '../service/MessageService.js'
-import { PRIORITY_INBOX_ID } from '../store/constants.js'
+import { PRIORITY_INBOX_ID, UNIFIED_SENT_ID } from '../store/constants.js'
 import useMainStore from '../store/mainStore.js'
 import { mailboxHasRights } from '../util/acl.js'
 
@@ -286,7 +286,7 @@ export default {
 		visible() {
 			return (
 				(this.account.showSubscribedOnly === false
-					|| (this.mailbox.attributes && this.mailbox.attributes.includes('\\subscribed'))) && this.isUnifiedButOnlyInbox
+					|| (this.mailbox.attributes && this.mailbox.attributes.includes('\\subscribed'))) && this.isVisibleUnifiedMailbox
 			)
 		},
 
@@ -374,11 +374,13 @@ export default {
 			return this.isDroppableSpecialMailbox || (!this.mailbox.specialRole && !this.account.isUnified)
 		},
 
-		isUnifiedButOnlyInbox() {
+		isVisibleUnifiedMailbox() {
 			if (!this.mailbox.isUnified) {
 				return true
 			}
-			return this.mailbox.specialUse.includes('inbox') && this.mainStore.getAccounts.length > 2
+			// The follow-up mailbox is unified and 'sent' too, but it is not a navigation entry
+			const isInboxOrAllSent = this.mailbox.specialUse.includes('inbox') || this.mailbox.id === UNIFIED_SENT_ID
+			return isInboxOrAllSent && this.mainStore.getAccounts.length > 2
 		},
 
 		showUnreadCounter() {

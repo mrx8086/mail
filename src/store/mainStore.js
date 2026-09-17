@@ -9,6 +9,7 @@ import {
 	PRIORITY_INBOX_ID,
 	UNIFIED_ACCOUNT_ID,
 	UNIFIED_INBOX_ID,
+	UNIFIED_SENT_ID,
 } from './constants.js'
 import mapStoreActions from './mainStore/actions.js'
 import mapStoreGetters from './mainStore/getters.js'
@@ -24,7 +25,7 @@ export default defineStore('main', {
 					id: UNIFIED_ACCOUNT_ID,
 					accountId: UNIFIED_ACCOUNT_ID,
 					isUnified: true,
-					mailboxes: [PRIORITY_INBOX_ID, UNIFIED_INBOX_ID, FOLLOW_UP_MAILBOX_ID],
+					mailboxes: [PRIORITY_INBOX_ID, UNIFIED_INBOX_ID, UNIFIED_SENT_ID, FOLLOW_UP_MAILBOX_ID],
 					aliases: [],
 					collapsed: false,
 					emailAddress: '',
@@ -49,6 +50,20 @@ export default defineStore('main', {
 					mailboxes: [],
 					envelopeLists: {},
 					name: 'UNIFIED INBOX',
+				},
+				[UNIFIED_SENT_ID]: {
+					id: UNIFIED_SENT_ID,
+					databaseId: UNIFIED_SENT_ID,
+					accountId: 0,
+					attributes: ['\\subscribed'],
+					isUnified: true,
+					path: '',
+					specialUse: ['sent'],
+					specialRole: 'sent',
+					unread: 0,
+					mailboxes: [],
+					envelopeLists: {},
+					name: 'UNIFIED SENT',
 				},
 				[PRIORITY_INBOX_ID]: {
 					id: PRIORITY_INBOX_ID,

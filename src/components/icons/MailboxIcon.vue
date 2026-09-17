@@ -13,6 +13,12 @@
 	<IconAllInboxesOutline
 		v-else-if="mailbox.id === UNIFIED_INBOX_ID"
 		:size="20" />
+	<IconSend
+		v-else-if="mailbox.id === UNIFIED_SENT_ID && active"
+		:size="20" />
+	<IconSendOutline
+		v-else-if="mailbox.id === UNIFIED_SENT_ID"
+		:size="20" />
 	<IconInbox
 		v-else-if="mailbox.specialRole === 'inbox' && !mailbox.isPriorityInbox && filter !== 'starred' && active"
 		:size="20" />
@@ -92,7 +98,7 @@ import IconFavorite from 'vue-material-design-icons/Star.vue'
 import IconFavoriteOutline from 'vue-material-design-icons/StarOutline.vue'
 import IconDelete from 'vue-material-design-icons/TrashCan.vue'
 import IconDeleteOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import { UNIFIED_INBOX_ID } from '../../store/constants.js'
+import { UNIFIED_INBOX_ID, UNIFIED_SENT_ID } from '../../store/constants.js'
 
 export default {
 	name: 'MailboxIcon',
@@ -147,6 +153,7 @@ export default {
 	data() {
 		return {
 			UNIFIED_INBOX_ID,
+			UNIFIED_SENT_ID,
 		}
 	},
 }
