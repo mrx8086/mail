@@ -40,6 +40,10 @@ function translateSpecial(mailbox) {
 		return t('mail', 'Junk')
 	}
 	if (mailbox.specialUse.includes('sent')) {
+		if (mailbox.isUnified) {
+			// TRANSLATORS: translated mail box name
+			return t('mail', 'All sent')
+		}
 		// TRANSLATORS: translated mail box name
 		return t('mail', 'Sent')
 	}

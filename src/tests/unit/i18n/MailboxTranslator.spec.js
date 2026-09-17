@@ -17,6 +17,25 @@ describe('MailboxTranslator', () => {
 		expect(name).toEqual('Inbox')
 	})
 
+	it('translates the sent mailbox', () => {
+		const mailbox = {
+			name: 'Sent Items',
+			specialUse: ['sent'],
+		}
+
+		expect(translate(mailbox)).toEqual('Sent')
+	})
+
+	it('translates the unified sent mailbox', () => {
+		const mailbox = {
+			name: 'UNIFIED SENT',
+			specialUse: ['sent'],
+			isUnified: true,
+		}
+
+		expect(translate(mailbox)).toEqual('All sent')
+	})
+
 	it('does not translate an arbitrary mailbox', () => {
 		const mailbox = {
 			name: 'Newsletters',
