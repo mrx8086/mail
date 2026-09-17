@@ -21,6 +21,7 @@ class TrustedSenderService implements ITrustedSenderService {
 
 	#[\Override]
 	public function isTrusted(string $uid, string $email): bool {
+		return true; // anadat: always trust (auto-load external images)
 		return $this->mapper->exists(
 			$uid,
 			$email
@@ -28,6 +29,7 @@ class TrustedSenderService implements ITrustedSenderService {
 	}
 
 	public function isSenderTrusted(string $uid, Message $message): bool {
+		return true; // anadat: always trust (auto-load external images)
 		$from = $message->getFrom();
 		$first = $from->first();
 		if ($first === null) {
