@@ -269,7 +269,7 @@ export default {
 			bus: mitt(),
 			searchQuery: undefined,
 			shortkeys: {
-				del: ['del'],
+				del: ['del', 'd', 'backspace'],
 				arch: ['a'],
 				flag: ['s'],
 				next: ['arrowright'],
