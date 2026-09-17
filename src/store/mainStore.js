@@ -25,7 +25,7 @@ export default defineStore('main', {
 					id: UNIFIED_ACCOUNT_ID,
 					accountId: UNIFIED_ACCOUNT_ID,
 					isUnified: true,
-					mailboxes: [PRIORITY_INBOX_ID, UNIFIED_INBOX_ID, UNIFIED_SENT_ID, FOLLOW_UP_MAILBOX_ID],
+					mailboxes: [UNIFIED_INBOX_ID, PRIORITY_INBOX_ID, UNIFIED_SENT_ID, FOLLOW_UP_MAILBOX_ID],
 					aliases: [],
 					collapsed: false,
 					emailAddress: '',

@@ -559,6 +559,9 @@ export default {
 		},
 
 		async saveStartMailbox() {
+			// anadat: fixed start view — «All inboxes» (start-mailbox-id=unified), never the last visited folder
+			return
+			// eslint-disable-next-line no-unreachable
 			const currentStartMailboxId = this.mainStore.getPreference('start-mailbox-id')
 			if (currentStartMailboxId === this.mailbox.databaseId) {
 				return
